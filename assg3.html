@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
+        <script>
+    //         function validation()
+    // {
+    //     let firstName = document.getElementById('fname').value
+    // let lastName = document.getElementById('lname').value
+    // let email = document.getElementById('eml').value
+    // let password = document.getElementById('pass').value
+    // let clss = document.getElementById('class').value
+    // let dob = document.getElementById('dob').value
+    // var gender = document.getElementsByName('gen');
+    // var i
+    // let gen
+    // for(i=0;i<gender.length;i++)
+    // {
+    //     if(gender[i].checked)
+    //     gen=gender[i].value;
+    // }
+    
+    // let address = document.getElementById('add').value
+    // alert("hi"+firstName);
+    // if(firstName.localeCompare("f")!=0)
+    // {
+    //     alert("ghg");
+    //     return false;
+    //     // var script = document.createElement('script'); 
+          
+    //     // script.src =  
+    //     // "https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"; 
+          
+    //     // document.head.appendChild(script) 
+    //     // script.src =  
+    //     // "https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"; 
+          
+    //     // document.head.appendChild(script) 
+    //     // script.src =  
+    //     // "script.js"; 
+          
+    //     // document.head.appendChild(script) 
+        
+    // }
+    // }
+    function myFunc()
+    {
+    //  alert("ho");   
+  var firestore = firebase.firestore()
+
+  //Variable to access database collection
+  const db = firestore.collection("register")
+//   alert("hi");
+
+        db.get().then((querySnapshot) => {
+        // alert(email+"11111");
+        // var size=querySnapshot.size;
+        var max=1;
+        for (var i in querySnapshot.docs) {
+            const doc = querySnapshot.docs[i];
+            // doc.data() is never undefined for query doc snapshots
+            
+            // alert(doc.data().admsno+"_");
+            if(max<parseInt(doc.data().admsno))
+            {
+                max=parseInt(doc.data().admsno);
+            }
+        }
+        alert(max);
+    document.getElementById("adno").value=(max+1);
+    })
+    
+    }
+//     function loadDoc() {
+//   var xhttp;
+//   if (window.XMLHttpRequest) {
+//     // code for modern browsers
+//     xhttp = new XMLHttpRequest();
+//     } else {
+//     // code for IE6, IE5
+//     xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+//   }
+//   xhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//       document.getElementById("demo").innerHTML = this.responseText;
+//     }
+//   };
+//   xhttp.open("GET", "ajax.txt", true);
+//   xhttp.send();
+// }
+        </script>
+    </head>
+    <body onload="myFunc()">
+        <form action="" name="form" id="form" method="POST">
+            <fieldset style="text-align: center;width: 450px;margin-left: 530px;">
+            <legend style="text-align: center;font-size: 30px;">REGISTRATION FORM</legend><br><br>
+            <!-- <hr style="width: 30%;margin-left: 0px;"> -->
+            <!-- <svg>
+                <line x1="0px" y1="0px" x2="100px" y2="0px"></line>
+            </svg>  -->
+            <!-- <label>REGISTER</label> -->
+            <!-- <hr style="width: 30%;margin-right: 0px;"> -->
+                <label>AD.NO.:-</label>
+                <input type="text" id="adno" name="adno" readonly style="width: 280px;" ><br><br><br>
+                <!-- <label>NAME:-</label> -->
+                <input type="text" id="fname" name="fname" placeholder="First Name" style="width: 110px;">
+                <input type="text" id="lname" name="lname" placeholder="Last Name" style="width: 110px;margin-left: 50px;"><br><br><br>
+                <label>EMAIL:-</label>
+                <input type="text" id="eml" name="eml" ><br><br><br>
+                <label>PASSWORD:-</label>
+                <input type="password" id="pass" name="pass" ><br><br><br>
+                <label>CONFIRM PASSWORD:-</label>
+                <input type="password" id="cpass" name="cpass" ><br><br><br>
+                
+                <label>CLASS:-</label>
+                <input type="text" id="class" name="class" ><br><br><br>
+                <label>DATE OF BIRTH:-</label>
+                <input type="date" id="dob" name="dob" min="2003-01-01" max=""><br><br><br>
+                <label style="margin-left: -100px;">GENDER:-</label>
+                <input type="radio" id="male" name="gen" value="MALE">
+                <label>MALE</label><br>
+                <input type="radio" id="female" name="gen" value="FEMALE" style="margin-left: 3px;">
+                <label>FEMALE</label><br>
+                <input type="radio" id="other" name="gen" value="OTHER" style="margin-left: -8px;">
+                <label>OTHER</label><br><br><br>
+                <label>ADDRESS:-</label>
+                <input type="text" id="add" name="add" ><br><br><br><br>
+                <input type="submit" id="submit" name="submit" style="width: 350px;height: 40px;font-size: 20px;color: white;background-color: seagreen;border-radius: 3px;" value="Register Now" >
+                <!-- <input type="reset"  value="RESET"> -->
+                <br><br><br>
+            </fieldset><br>
+            <div style="text-align: center;">
+            <label style="font-size: 15px;">Already have an account?<a href="signin.html">Sign In</a></label>
+        </div>
+        </form>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> -->
+        <!-- <script src="validate.js"></script> -->
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+        <script src="script.js"></script>
+        
+    </body>
+</html>
